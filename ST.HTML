@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ST PETER'S KONGOTA SS</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+    }
+
+    header {
+      background: #35424a;
+      color: #ffffff;
+      padding: 10px 0;
+      text-align: center;
+    }
+
+    nav {
+      text-align: center;
+      background-color: #e0e0e0;
+      padding: 10px 0;
+    }
+
+    nav a {
+      margin: 0 10px;
+      padding: 10px 15px;
+      border-radius: 5px;
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+
+    nav a:hover {
+      background-color: #222;
+    }
+
+    nav a.active {
+      border: 2px solid #000;
+    }
+
+    .container {
+      width: 80%;
+      margin: auto;
+    }
+
+    .card {
+      background: #ffffff;
+      padding: 20px;
+      margin: 20px 0;
+      border-radius: 5px;
+      box-shadow: 0 0 10px #ccc;
+    }
+
+    /* Tab Colors */
+    #finance-tab { background-color: #3b5998; }
+    #admissions-tab { background-color: #009688; }
+    #attendance-tab { background-color: #f44336; }
+    #reports-tab { background-color: #ff9800; }
+    #calendar-tab { background-color: #9c27b0; }
+
+    .login-container {
+      width: 100%;
+      max-width: 400px;
+      margin: 80px auto;
+      padding: 20px;
+      background: #ffffff;
+      border-radius: 8px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    .login-container input {
+      width: 90%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .login-container button {
+      background-color: #35424a;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .admin-name {
+      margin-top: 15px;
+      font-weight: bold;
+      color: #333;
+    }
+
+    #dashboard {
+      display: none;
+    }
+
+    #suggestion-box textarea {
+      width: 100%;
+      padding: 10px;
+      resize: none;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    .comment-item {
+      background-color: #e9f5e9;
+      padding: 10px;
+      margin-top: 10px;
+      border-radius: 5px;
+      font-size: 15px;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .school-banner {
+      text-align: center;
+      background: linear-gradient(to right, #009688, #3b5998);
+      padding: 15px;
+      color: white;
+    }
+
+    .school-banner h1 {
+      margin: 0;
+      font-size: 2.2em;
+    }
+
+    .school-banner p {
+      margin: 5px 0;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Login Form -->
+<div class="login-container" id="login-form">
+  <h2>Welcome to ST PETER KONGOTA SS</h2>
+  <form id="form">
+    <label for="email">Email:</label>
+    <input type="email" id="email" placeholder="Enter your email" required>
+
+    <label for="password">Password:</label>
+    <input type="password" id="password" placeholder="Enter your password" required>
+
+    <div>
+      <label><input type="checkbox"> Remember me</label>
+      <a href="#" style="float: right;">Forgot Password?</a>
+    </div>
+
+    <button type="submit">Login</button>
+    <div class="admin-name">#BEYAMBA DEUS (admin)</div>
+  </form>
+</div>
+
+<!-- Dashboard -->
+<div id="dashboard">
+
+  <!-- School Banner -->
+  <div class="school-banner">
+    <h1>ST PETER'S KONGOTA SS</h1>
+    <p><strong>Headteacher:</strong> Madam Nakya — Tel: 0775303601</p>
+    <p><strong>Deputy Headteacher:</strong> Lule Tomas — Tel: 0785059231</p>
+  </div>
+
+  <header>
+    <h1>School Dashboard</h1>
+  </header>
+
+  <nav>
+    <a href="#" id="finance-tab" class="tab">Finance</a>
+    <a href="#" id="admissions-tab" class="tab">Admissions</a>
+    <a href="#" id="attendance-tab" class="tab">Attendance</a>
+    <a href="#" id="reports-tab" class="tab">Reports</a>
+    <a href="#" id="calendar-tab" class="tab">Calendar</a>
+  </nav>
+
+  <div class="container">
+    <!-- Finance -->
+    <div class="card tab-content" id="finance">
+      <h2>Finance</h2>
+      <form id="finance-form">
+        <label>Student Name:</label><br>
+        <input type="text" id="student-name" required><br><br>
+        <label>Fees Balance:</label><br>
+        <input type="number" id="fees-balance" required><br><br>
+        <button type="submit">Generate Receipt</button>
+      </form>
+      <div id="receipt-output" style="margin-top:20px;"></div>
+    </div>
+
+    <!-- Admissions -->
+    <div class="card tab-content hidden" id="admissions">
+      <h2>Admissions</h2>
+      <p><strong>Student Vacancies:</strong> 45</p>
+      <p><strong>Teacher Vacancies:</strong> 10</p>
+    </div>
+
+    <!-- Attendance -->
+    <div class="card tab-content hidden" id="attendance">
+      <h2>Class Attendance</h2>
+      <p>Track attendance for classes S1-S14.</p>
+    </div>
+
+    <!-- Reports -->
+    <div class="card tab-content hidden" id="reports">
+      <h2>Reports</h2>
+      <p>Generate student reports automatically.</p>
+    </div>
+
+    <!-- Calendar -->
+    <div class="card tab-content hidden" id="calendar">
+      <h2>Calendar</h2>
+      <p>View and manage school events.</p>
+    </div>
+
+    <!-- Suggestions -->
+    <div class="card" id="suggestion-box">
+      <h2>Suggestions and Comments</h2>
+      <p>Submit up to 3 suggestions about this project.</p>
+      <form id="suggestion-form">
+        <textarea id="suggestion-input" rows="4" placeholder="Enter your comment..." required></textarea><br>
+        <button type="submit">Submit Comment</button>
+      </form>
+      <div id="submitted-comments"></div>
+    </div>
+  </div>
+</div>
+
+<!-- Internal JavaScript -->
+<script>
+  // Handle login
+  document.getElementById('form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    document.getElementById('login-form').style.display = "none";
+    document.getElementById('dashboard').style.display = "block";
+  });
+
+  // Handle tab switching
+  const tabs = document.querySelectorAll('.tab');
+  const contents = document.querySelectorAll('.tab-content');
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', function(e) {
+      e.preventDefault();
+      tabs.forEach(t => t.classList.remove('active'));
+      contents.forEach(c => c.classList.add('hidden'));
+
+      tab.classList.add('active');
+      const contentId = tab.id.replace('-tab', '');
+      document.getElementById(contentId).classList.remove('hidden');
+    });
+  });
+
+  // Handle finance receipt generation
+  document.getElementById('finance-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const name = document.getElementById('student-name').value;
+    const balance = document.getElementById('fees-balance').value;
+    const date = new Date().toLocaleDateString();
+
+    const receipt = `
+      <div style="border:1px solid #000; padding:10px;">
+        <h3>Receipt</h3>
+        <p><strong>Student Name:</strong> ${name}</p>
+        <p><strong>Fees Balance:</strong> UGX ${balance}</p>
+        <p><strong>Date:</strong> ${date}</p>
+      </div>
+    `;
+    document.getElementById('receipt-output').innerHTML = receipt;
+  });
+
+  // Suggestion box
+  let commentCount = 0;
+  const suggestionForm = document.getElementById('suggestion-form');
+  const suggestionInput = document.getElementById('suggestion-input');
+  const submittedComments = document.getElementById('submitted-comments');
+
+  suggestionForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    if (commentCount >= 3) return;
+
+    const commentText = suggestionInput.value.trim();
+    if (commentText === "") return;
+
+    const div = document.createElement('div');
+    div.className = "comment-item";
+    div.textContent = commentText;
+    submittedComments.appendChild(div);
+
+    commentCount++;
+    suggestionInput.value = "";
+
+    if (commentCount >= 3) {
+      suggestionInput.disabled = true;
+      suggestionForm.querySelector("button").disabled = true;
+      suggestionInput.placeholder = "Comment limit reached.";
+    }
+  });
+</script>
+
+</body>
+</html>
